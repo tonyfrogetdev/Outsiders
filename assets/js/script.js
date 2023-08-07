@@ -3,7 +3,7 @@
 
 
 /**
- * ajout d'un event sur plusieurs éléments
+ * ajout d'event sur plusieurs éléments
  */
 
 const addEventOnElements = function (elements, eventType, callback) {
@@ -15,8 +15,8 @@ const addEventOnElements = function (elements, eventType, callback) {
 
 
 /**
- * 
- * la navbar apparaît lorsqu'on clique sur le bouton menu
+ * MOBILE NAVBAR
+ * la navbar descend après avoir cliqué sur le menu
  */
 
 const navbar = document.querySelector("[data-navbar]");
@@ -40,7 +40,7 @@ addEventOnElements(navLinks, "click", navClose);
 
 
 /**
- * les boutons header et backtop seront visible après avoir scroll de 100px en bas
+ * le header et le backtop apparaîssent lorsque l'on descend de 100px
  */
 
 const header = document.querySelector("[data-header]");
@@ -61,7 +61,7 @@ window.addEventListener("scroll", activeEl);
 
 
 /**
- * Un hover sur le boutton , ripple effect
+ * hover sur le bouton / ripple effect
  */
 
 const buttons = document.querySelectorAll("[data-btn]");
@@ -76,7 +76,7 @@ addEventOnElements(buttons, "mousemove", buttonHoverRipple);
 
 
 /**
- * On fait apparaître les élements au scroll
+ * revele les éléments lors du scroll
  */
 
 const revealElements = document.querySelectorAll("[data-reveal]");
@@ -96,3 +96,25 @@ window.addEventListener("scroll", revealElementOnScroll);
 window.addEventListener("load", revealElementOnScroll);
 
 
+
+/**
+ * Curseur customisé
+ */
+
+const cursor = document.querySelector("[data-cursor]");
+const hoverElements = [...document.querySelectorAll("a"), ...document.querySelectorAll("button")];
+
+const cursorMove = function (event) {
+  cursor.style.top = `${event.clientY}px`;
+  cursor.style.left = `${event.clientX}px`;
+}
+
+window.addEventListener("mousemove", cursorMove);
+
+addEventOnElements(hoverElements, "mouseover", function () {
+  cursor.classList.add("hovered");
+});
+
+addEventOnElements(hoverElements, "mouseout", function () {
+  cursor.classList.remove("hovered");
+});
